@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Demo - <?= $title ?> - PHP For Beginners</title>
+    <title>Demo - PHP For Beginners</title>
 </head>
 
 <body class="h-full">
     <div class="min-h-full">
-        <?php require("nav.php"); ?>
-        <?php require("banner.php"); ?>

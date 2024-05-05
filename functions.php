@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/config/constants.php';
+
 function urlIs($value)
 {
     return $_SERVER['REQUEST_URI'] === $value;

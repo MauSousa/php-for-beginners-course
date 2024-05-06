@@ -10,7 +10,13 @@ $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Disable errors in the form of exceptions
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Make the default fetch be an associative array
 ];
-$pdo = new PDO($dsn, "laracasts", "root_root", $options);
+
+try {
+    $pdo = new PDO($dsn, "laracasts", "root_root", $options);
+} catch (Exception $e) {
+    error_log($e->getMessage());
+    exit('Something bad happened');
+}
 
 $query = "select * from posts";
 $statement = $pdo->prepare($query);

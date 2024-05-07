@@ -1,30 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+require __DIR__ . '/config/constants.php';
+require DIR_BASE . '/classes/Database.class.php';
 require "functions.php";
 // require "router.php";
 
-// MySQL connection
-$dsn = "mysql:host=127.0.01;port=3310;dbname=myapp;charset=utf8mb4";
-$options = [
-    PDO::ATTR_EMULATE_PREPARES   => false, // Disable emulation mode for "real" prepared statements
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Disable errors in the form of exceptions
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Make the default fetch be an associative array
-];
+$db = new Database();
+$posts = $db->query("select * from posts")->fetchAll();
 
-try {
-    $pdo = new PDO($dsn, "laracasts", "root_root", $options);
-} catch (Exception $e) {
-    error_log($e->getMessage());
-    exit('Something bad happened');
-}
+dd($posts);
 
-$query = "select * from posts";
-$statement = $pdo->prepare($query);
-
-$statement->execute();
-
-$posts = $statement->fetchAll();
-
-foreach ($posts as $post) {
-    echo "<li>" . $post['title'] . "</li>";
-}
+// foreach ($posts as $post) {
+//     echo "<li>" . $post['title'] . "</li>";
+// }

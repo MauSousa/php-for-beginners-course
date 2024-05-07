@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 class Database
 {
     private $options = [
@@ -10,20 +12,14 @@ class Database
 
     private $connection;
 
-    public function __construct()
+    public function __construct(array $config, string $username = 'laracasts', string $password = 'root_root')
     {
-        $config = [
-            'host' => '127.0.0.1',
-            'port' => 3310,
-            'dbname' => 'myapp',
-            'charset' => 'utf8mb4'
-        ];
 
         // MySQL connection
         $dsn = 'mysql:' . http_build_query($config, '', ';');
 
         try {
-            $this->connection = new PDO($dsn, "laracasts", "root_root", $this->options);
+            $this->connection = new PDO($dsn, $username, $password, $this->options);
         } catch (Exception $e) {
             error_log($e->getMessage());
             exit('Something bad happened');

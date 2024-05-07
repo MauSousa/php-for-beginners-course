@@ -8,9 +8,12 @@ require "functions.php";
 // require "router.php";
 
 $config = require(DIR_BASE . '/config/config.php');
-
 $db = new Database($config);
-$posts = $db->query("select * from posts")->fetchAll();
+
+$id = $_GET['id'];
+$query = "select * from posts where id = {$id}";
+
+$posts = $db->query($query)->fetch();
 
 dd($posts);
 

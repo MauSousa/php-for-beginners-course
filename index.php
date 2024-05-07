@@ -11,9 +11,9 @@ $config = require(DIR_BASE . '/config/config.php');
 $db = new Database($config);
 
 $id = $_GET['id'];
-$query = "select * from posts where id = {$id}";
+$query = "select * from posts where id = ?";
 
-$posts = $db->query($query)->fetch();
+$posts = $db->query($query, [$id])->fetch();
 
 dd($posts);
 

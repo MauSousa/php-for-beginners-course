@@ -31,8 +31,6 @@ class Database
         $statement = $this->connection->prepare($query);
         $statement->execute($params);
 
-        error_log($query);
-
         return $statement;
     }
 }

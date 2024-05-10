@@ -11,6 +11,7 @@ class Database
     ];
 
     private $connection;
+    private $statement;
 
     public function __construct(array $config, string $username = 'laracasts', string $password = 'root_root')
     {
@@ -28,9 +29,28 @@ class Database
 
     public function query(string $query, array $params = [])
     {
-        $statement = $this->connection->prepare($query);
-        $statement->execute($params);
+        $this->statement = $this->connection->prepare($query);
+        $this->statement->execute($params);
 
-        return $statement;
+        return $this;
+    }
+
+    public function find()
+    {
+        return $this->statement->fetch();
+    }
+
+    public function findAll()
+    {
+        return $this->statement->fetchAll();
+    }
+
+    public function findOrFail()
+    {
+        $result = $this->find();
+
+        if (!$result) abort();
+
+        return $result;
     }
 }

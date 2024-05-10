@@ -20,3 +20,10 @@ function dede($text)
     var_export($text);
     echo '</pre>';
 }
+
+function authorize($condition, $status = Response::FORBIDDEN)
+{
+    if (!$condition) {
+        abort($status);
+    }
+}

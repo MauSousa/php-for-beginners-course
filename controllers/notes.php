@@ -1,7 +1,7 @@
 <?php
 
 $config = require(DIR_BASE . '/config/config.php');
-$db = new Database($config);
+$db = new Database($config['database']);
 
 $title = 'My Notes';
 

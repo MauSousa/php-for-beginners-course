@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+
 namespace Core;
 
+use Core\Router;
 use PDO;
 
 class Database
@@ -53,7 +55,7 @@ class Database
     {
         $result = $this->find();
 
-        if (!$result) abort();
+        if (!$result) Router::abort();
 
         return $result;
     }

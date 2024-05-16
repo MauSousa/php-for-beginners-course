@@ -10,7 +10,8 @@ $note = $db->query("select id, body, user_id from notes where id = :id", ['id' =
 
 authorize($note['user_id'] === $currentUserId);
 
-view("notes/show.view.php", [
-    'title' => 'Note',
+view('notes/edit.view.php', [
+    'title' => 'Edit note',
+    'errors' => [],
     'note' => $note
 ]);

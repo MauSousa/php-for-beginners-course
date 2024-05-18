@@ -6,6 +6,7 @@ namespace Core;
 
 use Core\Middleware\Auth;
 use Core\Middleware\Guest;
+use Core\Middleware\Middleware;
 
 class Router
 {
@@ -61,12 +62,10 @@ class Router
         }
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-                // apply the middleware (bad code for now)
-                if ($route['middleware'] === 'guest') {
-                    (new Guest)->handle();
-                }
-                if ($route['middleware'] === 'auth') {
-                    (new Auth)->handle();
+                // apply the middleware
+                if ($route['middleware']) {
+                    $middleware = Middleware::MAP[$route['middleware']];
+                    (new $middleware)->handle();
                 }
 
                 return require base_path($route['controller']);

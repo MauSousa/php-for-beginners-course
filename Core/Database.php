@@ -27,7 +27,7 @@ class Database
 
         try {
             $this->connection = new PDO($dsn, $username, $password, $this->options);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             error_log($e->getMessage());
             exit('Something bad happened');
         }

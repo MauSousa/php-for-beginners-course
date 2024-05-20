@@ -1,5 +1,6 @@
 <?php
 
+session_name('notes-app');
 session_start();
 
 const BASE_PATH = __DIR__ . '/../';

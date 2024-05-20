@@ -41,3 +41,10 @@ function view($path, $data = [])
     extract($data);
     require base_path('views/' . $path);
 }
+
+function login(array $user)
+{
+    $_SESSION['user'] = [
+        'email' => $user['email'],
+    ];
+}

@@ -17,25 +17,15 @@ if (!$form->validate($email, $password)) {
 
 $db = App::resolve(Database::class);
 
-// match user credentials
-$user = $db->query('select email, password from users where email = :email', [
-    'email' => $email
-])->find();
+$auth = new Authenticator();
 
-if ($user) {
-    // check if the hashes are equal
-    if (password_verify($password, $user['password'])) {
-        login([
-            'email' => $email,
-        ]);
-
-        header('location: /');
-        exit();
-    }
+if ($auth->attempt($email, $password)) {
+    header('location: /');
+    exit();
+} else {
+    return view('session/create.view.php', [
+        'errors' => [
+            'email' => 'No account found for the email or password provided'
+        ]
+    ]);
 }
-
-return view('session/create.view.php', [
-    'errors' => [
-        'email' => 'No account found for the email or password provided'
-    ]
-]);

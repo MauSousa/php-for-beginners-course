@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Core;
+
 use Core\App;
 use Core\Database;
 

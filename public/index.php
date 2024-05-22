@@ -1,5 +1,7 @@
 <?php
 
+use Core\Session;
+
 session_name('notes-app');
 session_start();
 
@@ -24,5 +26,4 @@ $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 $router->route($uri, $method);
 
-// TODO: refactor this
-unset($_SESSION['_flash']);
+Session::unflash();

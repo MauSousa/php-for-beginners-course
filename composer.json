@@ -1,0 +1,17 @@
+{
+    "name": "augusto/laracasts-php-for-beginners",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Augusto Sousa",
+            "email": "lagrange.tesla@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Core;
 
-use Core\Middleware\Auth;
-use Core\Middleware\Guest;
 use Core\Middleware\Middleware;
 
 class Router
@@ -70,6 +68,11 @@ class Router
         }
 
         self::abort();
+    }
+
+    public function previousUrl()
+    {
+        return $_SERVER['HTTP_REFERER'];
     }
 
     public static function abort(int $code = 404)

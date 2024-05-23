@@ -22,3 +22,5 @@ $router->get('/login', 'session/create.php')->only('guest');
 $router->post('/session', 'session/store.php')->only('guest');
 
 $router->delete('/session', 'session/destroy.php')->only('auth');
+
+$router->get('/notes/pdf', 'notes/pdf.php')->only('auth');

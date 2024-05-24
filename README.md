@@ -15,6 +15,7 @@ Course [here](https://www.youtube.com/playlist?list=PL3VM-unCzF8ipG50KDjnzhugceo
    - On the terminal run `docker compose up -d`
 2. Run PHP local development server
    - On the terminal run `php -S localhost:port -t public` change the port to a number
+3. Copy `.env.example` to `.env`
 
 ### Todo 
 - [ ] Change sign up code
